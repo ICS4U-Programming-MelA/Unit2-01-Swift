@@ -7,7 +7,7 @@
 // Import modules.
 import Foundation
 
-func recurseString(normalString: inout String, reversedString: inout String) -> String {
+func recurseString(normalString: String, reversedString: inout String) -> String {
 
   // Declare variables.
   var tempString = normalString
@@ -20,7 +20,7 @@ func recurseString(normalString: inout String, reversedString: inout String) -> 
   } else {
     let removedChar = tempString.remove(at: tempString.startIndex)
     reversedString.insert(removedChar, at: reversedString.startIndex)
-    return recurseString(normalString: &tempString, reversedString: &reversedString)
+    return recurseString(normalString: tempString, reversedString: &reversedString)
   }
 }
 
@@ -32,10 +32,10 @@ print("This program reverses a given string using recursion.")
 
 // Get the user's string.
 print("Enter your string:", terminator: " ")
-var userString: String = readLine() ?? ""
+let userString: String = readLine() ?? ""
 
 // Call recurseString.
-let reverse: String = recurseString(normalString: &userString, reversedString: &freeSpace)
+let reverse: String = recurseString(normalString: userString, reversedString: &freeSpace)
 
 // Display the reversed string.
 print("\n" + "The reverse of '\(String(freeSpace.reversed()))' is: \(reverse)")
